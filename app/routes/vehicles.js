@@ -5,4 +5,9 @@ const {
 } = Ember;
 
 export default Route.extend({
+
+  model() {
+    return this.get('store').findAll('vehicle');
+  }
+
 });

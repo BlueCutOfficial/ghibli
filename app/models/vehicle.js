@@ -12,7 +12,7 @@ export default Model.extend({
   description: attr('string'),
   vehicle_class: attr('string'), // eslint-disable-line
   length: attr('string'),
-  pilot: belongsTo('character'),
+  pilot: belongsTo('person'),
   films: belongsTo('film')
 
 });

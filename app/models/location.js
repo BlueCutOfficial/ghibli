@@ -12,7 +12,7 @@ export default Model.extend({
   climate: attr('string'),
   terrain: attr('string'),
   surface_water: attr('string'), // eslint-disable-line
-  residents: hasMany('character'),
+  residents: hasMany('person'),
   films: hasMany('film')
 
 });
