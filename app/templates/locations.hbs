@@ -1,3 +1,6 @@
+{{outlet}}
 {{#each model as |location|}}
-  <p>{{location.name}}</p>
+  {{#link-to "locations.location.detail" location.id}}
+    <p>{{location.name}}</p>
+  {{/link-to}}
 {{/each}}

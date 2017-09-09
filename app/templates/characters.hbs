@@ -1,3 +1,6 @@
+{{outlet}}
 {{#each model as |character|}}
-  <p>{{character.name}}</p>
+  {{#link-to "characters.character.detail" character.id}}
+    <p>{{character.name}}</p>
+  {{/link-to}}
 {{/each}}

@@ -5,4 +5,9 @@ const {
 } = Ember;
 
 export default Route.extend({
+
+  model(params) {
+    return this.get('store').findRecord('film', params.id);
+  }
+
 });

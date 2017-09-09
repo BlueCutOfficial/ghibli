@@ -1,4 +1,7 @@
+{{outlet}}
 {{#each model as |vehicle|}}
-  <p>{{vehicle.name}}</p>
+  {{#link-to "vehicles.vehicle.detail" vehicle.id}}
+    <p>{{vehicle.name}}</p>
+  {{/link-to}}
 {{/each}}
 

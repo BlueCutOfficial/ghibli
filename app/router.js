@@ -11,31 +11,26 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('films', function() {
-    this.route('film', {
-      path: ':id'
-    }, function() {
-      this.route('detail');
-    });
+
+  this.route('films');
+  this.route('film', { path: '/films/:id' }, function() {
+    this.route('detail');
   });
+
   this.route('characters', function() {
-    this.route('character', {
-      path: ':id'
-    }, function() {
+    this.route('character', { path: ':id' }, function() {
       this.route('detail');
     });
   });
+
   this.route('locations', function() {
-    this.route('location', {
-      path: ':id'
-    }, function() {
+    this.route('location', { path: ':id' }, function() {
       this.route('detail');
     });
   });
+
   this.route('vehicles', function() {
-    this.route('vehicle', {
-      path: ':id'
-    }, function() {
+    this.route('vehicle', { path: ':id' }, function() {
       this.route('detail');
     });
   });
