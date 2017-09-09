@@ -1,1 +1,16 @@
 <p><strong>{{model.name}}</strong></p>
+
+<p><strong>Films</strong></p>
+  {{#each model.films as |film|}}
+    {{#link-to "film.detail" film.id}}
+      <p>{{film.title}}</p>
+    {{/link-to}}
+  {{/each}}
+<br/>
+<p><strong>Characters</strong></p>
+{{#each model.people as |character|}}
+  {{#link-to "characters.character.detail" character.id}}
+    <p>{{character.name}}</p>
+  {{/link-to}}
+{{/each}}
+<br/>

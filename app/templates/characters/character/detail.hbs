@@ -1,1 +1,22 @@
 <p><strong>{{model.name}}</strong></p>
+
+<p><strong>Films</strong></p>
+  {{#each model.films as |film|}}
+    {{#link-to "film.detail" film.id}}
+      <p>{{film.title}}</p>
+    {{/link-to}}
+  {{/each}}
+<br/>
+<p><strong>Locations</strong></p>
+  {{#each model.locations as |location|}}
+    {{#link-to "locations.location.detail" location.id}}
+      <p>{{location.name}}</p>
+    {{/link-to}}
+  {{/each}}
+<br/>
+<p><strong>Vehicles</strong></p>
+{{#each model.vehicles as |vehicle|}}
+  {{#link-to "vehicles.vehicle.detail" vehicle.id}}
+    <p>{{vehicle.name}}</p>
+  {{/link-to}}
+{{/each}}

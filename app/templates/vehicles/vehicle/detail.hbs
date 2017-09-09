@@ -1,1 +1,10 @@
 <p><strong>{{model.name}}</strong></p>
+
+{{#link-to "film.detail" model.films.id}}
+  <p><strong>Film : {{model.films.title}}</strong></p>
+{{/link-to}}
+
+{{#link-to "characters.character.detail" model.pilot.id}}
+  <p><strong>Pilot : {{model.pilot.name}}</strong></p>
+{{/link-to}}
+
