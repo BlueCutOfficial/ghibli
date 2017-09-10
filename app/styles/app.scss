@@ -61,3 +61,7 @@ md-toolbar:not(.md-menu-toolbar) {
     color: $color-dark;
   }
 }
+
+md-card {
+  min-width: 260px;
+}

@@ -6,6 +6,8 @@ const {
 
 export default Component.extend({
 
-  classNames: ['max-width']
+  tagName: 'md-card-actions',
+
+  classNames: ['layout-row', 'layout-align-end-center']
 
 });

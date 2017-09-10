@@ -1,44 +1,30 @@
-{{detail-header text=model.name}}
+{{#paper-card as |card|}}
+  {{detail-header text=model.name}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.subhead}}
+        <p>Gender: {{model.gender}}</p>
+        <p>Age: {{model.age}}</p>
+        <p>Eye color: {{model.eye_color}}</p>
+        <p>Hair color: {{model.hair_color}}</p>
+      {{/text.subhead}}
+    {{/title.text}}
+  {{/card.title}}
 
-<div class="content-box align-left">
-  <p>Gender: {{model.gender}}</p>
-  <p>Age: {{model.age}}</p>
-  <p>Eye color: {{model.eye_color}}</p>
-  <p>Hair color: {{model.hair_color}}</p>
-</div>
-<br/>
+  {{#if model.films}}
+      {{link-to/films-bloc model=model.films title="Appears in"}}
+  {{/if}}
 
-{{#if model.films}}
-  <div class="content-box align-left">
-    <h2>Films</h2>
-    {{#each model.films as |film|}}
-      {{#link-to "film.detail" film.id}}
-        <p>{{film.title}}</p>
-      {{/link-to}}
-    {{/each}}
-  </div>
-  <br/>
-{{/if}}
+  {{#if model.locations}}
+      {{link-to/locations-bloc model=model.locations title="Locations"}}
+  {{/if}}
 
-{{#if model.locations}}
-  <div class="content-box align-left">
-    <h2>Locations</h2>
-    {{#each model.locations as |location|}}
-      {{#link-to "locations.location.detail" location.id}}
-        <p>{{location.name}}</p>
-      {{/link-to}}
-    {{/each}}
-  </div>
-  <br/>
-{{/if}}
+  {{#if model.vehicles}}
+      {{link-to/vehicles-bloc model=model.vehicles title="Drives"}}
+  {{/if}}
 
-{{#if model.vehicles}}
-  <div class="content-box align-left">
-    <h2>Vehicles</h2>
-    {{#each model.vehicles as |vehicle|}}
-      {{#link-to "vehicles.vehicle.detail" vehicle.id}}
-        <p>{{vehicle.name}}</p>
-      {{/link-to}}
-    {{/each}}
-  </div>
-{{/if}}
+{{/paper-card}}
+
+
+
+

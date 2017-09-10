@@ -1,31 +1,21 @@
-{{detail-header text=model.name}}
+{{#paper-card as |card|}}
+  {{detail-header text=model.name}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.subhead}}
+        <p>Climate: {{model.climate}}</p>
+        <p>Terrain: {{model.terrain}}</p>
+        <p>Surface water: {{model.surface_water}}</p>
+      {{/text.subhead}}
+    {{/title.text}}
+  {{/card.title}}
 
-<div class="content-box align-left">
-  <p>Climate: {{model.climate}}</p>
-  <p>Terrain: {{model.terrain}}</p>
-  <p>Surface water: {{model.surface_water}}</p>
-</div>
-<br/>
+  {{#if model.films}}
+      {{link-to/films-bloc model=model.films title="Appears in"}}
+  {{/if}}
 
-{{#if model.films}}
-  <div class="content-box align-left">
-    <h2>Films</h2>
-    {{#each model.films as |film|}}
-      {{#link-to "film.detail" film.id}}
-        <p>{{film.title}}</p>
-      {{/link-to}}
-    {{/each}}
-  </div>
-  <br/>
-{{/if}}
+  {{#if model.people}}
+      {{link-to/characters-bloc model=model.people title="Residents"}}
+  {{/if}}
 
-{{#if model.people}}
-  <div class="content-box align-left">
-    <h2>Residents</h2>
-    {{#each model.people as |character|}}
-      {{#link-to "characters.character.detail" character.id}}
-        <p>{{character.name}}</p>
-      {{/link-to}}
-    {{/each}}
-  </div>
-{{/if}}
+{{/paper-card}}

@@ -1,21 +1,28 @@
-{{detail-header text=model.name}}
-
-<div class="content-box align-left">
-  <p>{{model.description}}</p>
-  <p>Vehicle class: {{model.vehicle_class}}</p>
-  <p>Length: {{model.length}}</p>
-
-  <p>Film : </p>
-  {{#link-to "film.detail" model.films.id}}
-    {{model.films.title}}
-  {{/link-to}}
-
-  <p>Pilot : </p>
-  {{#link-to "characters.character.detail" model.pilot.id}}
-    {{model.pilot.name}}
-  {{/link-to}}
-</div>
-
+{{#paper-card as |card|}}
+  {{detail-header text=model.name}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.subhead}}
+        <p>{{model.description}}</p>
+        <hr/>
+        <p>Vehicle class: {{model.vehicle_class}}</p>
+        <p>Length: {{model.length}}</p>
+      {{/text.subhead}}
+    {{/title.text}}
+  {{/card.title}}
+  {{#card.actions}}
+    <p>Appears in: </p>
+    {{#link-to "film.detail" model.films.id tagName="button" class="md-button md-primary"}}
+      {{model.films.title}}
+    {{/link-to}}
+  {{/card.actions}}
+  {{#card.actions}}
+    <p>Pilot: </p>
+    {{#link-to "characters.character.detail" model.pilot.id tagName="button" class="md-button md-primary"}}
+      {{model.pilot.name}}
+    {{/link-to}}
+  {{/card.actions}}
+{{/paper-card}}
 
 
 

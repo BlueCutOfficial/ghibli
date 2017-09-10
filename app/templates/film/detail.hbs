@@ -1,45 +1,30 @@
-{{detail-header text=model.title}}
+{{#paper-card as |card|}}
+  {{detail-header text=model.title}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.subhead}}
+        <p>{{model.description}}</p>
+        <hr/>
+        <p>Director: {{model.director}}</p>
+        <p>Producer: {{model.producer}}</p>
+        <p>Release date: {{model.release_date}}</p>
+        <p>Rating: {{model.rt_score}}</p>
+      {{/text.subhead}}
+    {{/title.text}}
+  {{/card.title}}
 
-<div class="content-box align-left">
-  <p>{{model.description}}</p>
-  <p>Director: {{model.director}}</p>
-  <p>Producer: {{model.producer}}</p>
-  <p>Release date: {{model.release_date}}</p>
-  <p>Rating: {{model.rt_score}}</p>
-</div>
-<br/>
+  {{#if model.people}}
+    {{link-to/characters-bloc model=model.people title="Characters"}}
+  {{/if}}
 
-{{#if model.people}}
-  <div class="content-box align-left">
-    <p><strong>Characters</strong></p>
-    {{#each model.people as |character|}}
-      {{#link-to "characters.character.detail" character.id}}
-        <p>{{character.name}}</p>
-      {{/link-to}}
-    {{/each}}
-  </div>
-  <br/>
-{{/if}}
+  {{#if model.locations}}
+      {{link-to/locations-bloc model=model.locations title="Locations"}}
+  {{/if}}
 
-{{#if model.locations}}
-  <div class="content-box align-left">
-    <p><strong>Locations</strong></p>
-    {{#each model.locations as |location|}}
-      {{#link-to "locations.location.detail" location.id}}
-        <p>{{location.name}}</p>
-      {{/link-to}}
-    {{/each}}
-  </div>
-  <br/>
-{{/if}}
+  {{#if model.vehicles}}
+      {{link-to/vehicles-bloc model=model.vehicles title="Vehicles"}}
+  {{/if}}
 
-{{#if model.vehicles}}
-  <div class="content-box align-left">
-    <p><strong>Vehicles</strong></p>
-    {{#each model.vehicles as |vehicle|}}
-      {{#link-to "vehicles.vehicle.detail" vehicle.id}}
-        <p>{{vehicle.name}}</p>
-      {{/link-to}}
-    {{/each}}
-  </div>
-{{/if}}
+{{/paper-card}}
+
+{{#link-to "films" tagName="button" class="back md-button"}}Back to films{{/link-to}}
