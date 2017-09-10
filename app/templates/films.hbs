@@ -1,5 +1,11 @@
+{{!-- <div>
+{{#paper-select
+  disabled=disableSelect label="Sort by" options=sortOptions selected=sortBy
+  onChange=(action (mut sortBy)) as |state|}} {{state.abbrev}}
+{{/paper-select}}
+</div> --}}
 <div class="align-center">
-  {{#each model as |film|}}
+  {{#each sortedFilms as |film|}}
     {{#link-to "film.detail" film.id class="sidenav-button md-button"}}
       <p>{{film.title}}</p>
     {{/link-to}}
