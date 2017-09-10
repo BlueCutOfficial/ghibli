@@ -1,5 +1,9 @@
-{{#link-to "films" tagName="button" class="md-button"}}Films{{/link-to}}
-{{#link-to "characters" tagName="button" class="md-button"}}Characters{{/link-to}}
-{{#link-to "locations" tagName="button" class="md-button"}}Locations{{/link-to}}
-{{#link-to "vehicles" tagName="button" class="md-button"}}Vehicles{{/link-to}}
+{{#paper-toolbar as |toolbar|}}
+  {{#toolbar.tools}}
+    {{#link-to "films" tagName="button" class="md-button"}}Films{{/link-to}}
+    {{#link-to "characters" tagName="button" class="md-button"}}Characters{{/link-to}}
+    {{#link-to "locations" tagName="button" class="md-button"}}Locations{{/link-to}}
+    {{#link-to "vehicles" tagName="button" class="md-button"}}Vehicles{{/link-to}}
+  {{/toolbar.tools}}
+{{/paper-toolbar}}
 {{outlet}}

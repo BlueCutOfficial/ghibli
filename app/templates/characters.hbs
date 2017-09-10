@@ -1,6 +1,27 @@
-{{outlet}}
-{{#each model as |character|}}
-  {{#link-to "characters.character.detail" character.id}}
-    <p>{{character.name}}</p>
-  {{/link-to}}
-{{/each}}
+{{#paper-sidenav-container}}
+
+  <!-- Put the list of locations in the left side bar -->
+  {{#paper-sidenav lockedOpen=true}}
+    <!-- Sidebar title -->
+    {{#paper-toolbar class="md-whiteframe-1dp" as |toolbar|}}
+      {{#paper-toolbar-tools}}Ghibli's characters{{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+    <!-- Loop on models in the sidebar content -->
+    {{#paper-content padding=true class="align-center"}}
+      {{#each model as |character|}}
+        {{#link-to "characters.character.detail" character.id class="sidenav-button md-button"}}
+          <p>{{character.name}}</p>
+        {{/link-to}}
+      {{/each}}
+    {{/paper-content}}
+  {{/paper-sidenav}}
+
+  <!-- And display the detail on the main container -->
+  {{#paper-card-content class="flex"}}
+    <div class="detail-container layout-fill layout-align-start-center layout-column">
+      {{outlet}}
+    </div>
+  {{/paper-card-content}}
+
+{{/paper-sidenav-container}}
+

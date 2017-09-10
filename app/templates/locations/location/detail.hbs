@@ -1,16 +1,31 @@
-<p><strong>{{model.name}}</strong></p>
+{{detail-header text=model.name}}
 
-<p><strong>Films</strong></p>
-  {{#each model.films as |film|}}
-    {{#link-to "film.detail" film.id}}
-      <p>{{film.title}}</p>
-    {{/link-to}}
-  {{/each}}
+<div class="content-box align-left">
+  <p>Climate: {{model.climate}}</p>
+  <p>Terrain: {{model.terrain}}</p>
+  <p>Surface water: {{model.surface_water}}</p>
+</div>
 <br/>
-<p><strong>Characters</strong></p>
-{{#each model.people as |character|}}
-  {{#link-to "characters.character.detail" character.id}}
-    <p>{{character.name}}</p>
-  {{/link-to}}
-{{/each}}
-<br/>
+
+{{#if model.films}}
+  <div class="content-box align-left">
+    <h2>Films</h2>
+    {{#each model.films as |film|}}
+      {{#link-to "film.detail" film.id}}
+        <p>{{film.title}}</p>
+      {{/link-to}}
+    {{/each}}
+  </div>
+  <br/>
+{{/if}}
+
+{{#if model.people}}
+  <div class="content-box align-left">
+    <h2>Residents</h2>
+    {{#each model.people as |character|}}
+      {{#link-to "characters.character.detail" character.id}}
+        <p>{{character.name}}</p>
+      {{/link-to}}
+    {{/each}}
+  </div>
+{{/if}}

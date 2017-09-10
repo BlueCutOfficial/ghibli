@@ -1,4 +1,9 @@
+import Ember from 'ember';
 import DS from 'ember-data';
+
+const {
+  computed
+} = Ember;
 
 const {
   Model,
@@ -13,6 +18,8 @@ export default Model.extend({
   age: attr('string'),
   eye_color: attr('string'), // eslint-disable-line
   hair_color: attr('string'), // eslint-disable-line
-  films: hasMany('film')
+  films: hasMany('film'),
+  locations: hasMany('location'),
+  vehicles: hasMany('vehicle')
 
 });

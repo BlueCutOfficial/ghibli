@@ -1,27 +1,45 @@
-<p><strong>{{model.title}}</strong></p>
-<p>{{model.description}}</p>
-<p>{{model.director}}</p>
-<p>{{model.producer}}</p>
-<p>{{model.release_date}}</p>
-<p>{{model.rt_score}}</p>
+{{detail-header text=model.title}}
+
+<div class="content-box align-left">
+  <p>{{model.description}}</p>
+  <p>Director: {{model.director}}</p>
+  <p>Producer: {{model.producer}}</p>
+  <p>Release date: {{model.release_date}}</p>
+  <p>Rating: {{model.rt_score}}</p>
+</div>
 <br/>
-<p><strong>Characters</strong></p>
-{{#each model.people as |character|}}
-  {{#link-to "characters.character.detail" character.id}}
-    <p>{{character.name}}</p>
-  {{/link-to}}
-{{/each}}
-<br/>
-<p><strong>Locations</strong></p>
-  {{#each model.locations as |location|}}
-    {{#link-to "locations.location.detail" location.id}}
-      <p>{{location.name}}</p>
-    {{/link-to}}
-  {{/each}}
-<br/>
-<p><strong>Vehicles</strong></p>
-{{#each model.vehicles as |vehicle|}}
-  {{#link-to "vehicles.vehicle.detail" vehicle.id}}
-    <p>{{vehicle.name}}</p>
-  {{/link-to}}
-{{/each}}
+
+{{#if model.people}}
+  <div class="content-box align-left">
+    <p><strong>Characters</strong></p>
+    {{#each model.people as |character|}}
+      {{#link-to "characters.character.detail" character.id}}
+        <p>{{character.name}}</p>
+      {{/link-to}}
+    {{/each}}
+  </div>
+  <br/>
+{{/if}}
+
+{{#if model.locations}}
+  <div class="content-box align-left">
+    <p><strong>Locations</strong></p>
+    {{#each model.locations as |location|}}
+      {{#link-to "locations.location.detail" location.id}}
+        <p>{{location.name}}</p>
+      {{/link-to}}
+    {{/each}}
+  </div>
+  <br/>
+{{/if}}
+
+{{#if model.vehicles}}
+  <div class="content-box align-left">
+    <p><strong>Vehicles</strong></p>
+    {{#each model.vehicles as |vehicle|}}
+      {{#link-to "vehicles.vehicle.detail" vehicle.id}}
+        <p>{{vehicle.name}}</p>
+      {{/link-to}}
+    {{/each}}
+  </div>
+{{/if}}

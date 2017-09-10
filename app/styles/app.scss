@@ -1,1 +1,63 @@
+$primary: "deep-purple";
+$accent: "blue-grey";
+$warn: "light-green";
+
 @import 'ember-paper';
+
+$color-dark: #2b2142;
+$standard-padding: 20px;
+
+/** App general rules **/
+.align-left {
+  text-align: left;
+}
+.align-center {
+  text-align: center;
+}
+.max-width {
+  width: 100%;
+}
+.content-box {
+  width: 100%;
+  padding: $standard-padding;
+}
+.detail-container {
+  margin-left: 2px;
+}
+.sidenav-button {
+  width: 100%;
+  border-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/** Ember-paper overwrite **/
+
+// Change a bit side bar behaviour, because we want to have the relative position with the scroll
+md-sidenav.md-locked-open,
+md-sidenav.md-locked-open.md-closed,
+md-sidenav.md-locked-open.md-closed.md-sidenav-left,
+md-sidenav.md-locked-open.md-closed, {
+  position: relative;
+  height: calc(100vh - 64px);
+
+  // In the side bar, change the graphic code for toolbar
+  md-toolbar {
+    background-color: #d1c4e9;
+    color: $color-dark;
+  }
+
+  md-content {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+// This is for headers on detail pages
+md-toolbar.md-default-theme:not(.md-menu-toolbar),
+md-toolbar:not(.md-menu-toolbar) {
+  &.content-box {
+    background-color: #d1c4e9;
+    color: $color-dark;
+  }
+}

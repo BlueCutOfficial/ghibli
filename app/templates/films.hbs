@@ -1,5 +1,8 @@
-{{#each model as |film|}}
-  {{#link-to "film.detail" film.id}}
-    <p>{{film.title}}</p>
-  {{/link-to}}
-{{/each}}
+<div class="align-center">
+  {{#each model as |film|}}
+    {{#link-to "film.detail" film.id class="sidenav-button md-button"}}
+      <p>{{film.title}}</p>
+    {{/link-to}}
+  {{/each}}
+</div>
+

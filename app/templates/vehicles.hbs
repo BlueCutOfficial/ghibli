@@ -1,7 +1,28 @@
-{{outlet}}
-{{#each model as |vehicle|}}
-  {{#link-to "vehicles.vehicle.detail" vehicle.id}}
-    <p>{{vehicle.name}}</p>
-  {{/link-to}}
-{{/each}}
+{{#paper-sidenav-container}}
+
+  <!-- Put the list of locations in the left side bar -->
+  {{#paper-sidenav lockedOpen=true}}
+    <!-- Sidebar title -->
+    {{#paper-toolbar class="md-whiteframe-1dp" as |toolbar|}}
+      {{#paper-toolbar-tools}}Ghibli's vehicules{{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+    <!-- Loop on models in the sidebar content -->
+    {{#paper-content padding=true class="align-center"}}
+      {{#each model as |vehicle|}}
+        {{#link-to "vehicles.vehicle.detail" vehicle.id class="sidenav-button md-button"}}
+          <p>{{vehicle.name}}</p>
+        {{/link-to}}
+      {{/each}}
+    {{/paper-content}}
+  {{/paper-sidenav}}
+
+  <!-- And display the detail on the main container -->
+  {{#paper-card-content class="flex"}}
+    <div class="detail-container layout-fill layout-align-start-center layout-column">
+      {{outlet}}
+    </div>
+  {{/paper-card-content}}
+
+{{/paper-sidenav-container}}
+
 

@@ -1,10 +1,22 @@
-<p><strong>{{model.name}}</strong></p>
+{{detail-header text=model.name}}
 
-{{#link-to "film.detail" model.films.id}}
-  <p><strong>Film : {{model.films.title}}</strong></p>
-{{/link-to}}
+<div class="content-box align-left">
+  <p>{{model.description}}</p>
+  <p>Vehicle class: {{model.vehicle_class}}</p>
+  <p>Length: {{model.length}}</p>
 
-{{#link-to "characters.character.detail" model.pilot.id}}
-  <p><strong>Pilot : {{model.pilot.name}}</strong></p>
-{{/link-to}}
+  <p>Film : </p>
+  {{#link-to "film.detail" model.films.id}}
+    {{model.films.title}}
+  {{/link-to}}
+
+  <p>Pilot : </p>
+  {{#link-to "characters.character.detail" model.pilot.id}}
+    {{model.pilot.name}}
+  {{/link-to}}
+</div>
+
+
+
+
 
