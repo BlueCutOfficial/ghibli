@@ -4,6 +4,7 @@ $warn: "light-green";
 
 @import 'ember-paper';
 
+$light-purple: #d1c4e9;
 $color-dark: #2b2142;
 $standard-padding: 20px;
 
@@ -30,6 +31,16 @@ $standard-padding: 20px;
   padding: 0;
   margin: 0;
 }
+.markSeenBtn {
+  position: absolute;
+  z-index: 10;
+  width: 140px;
+  right: 20px;
+  top: 88px;
+  &.unseen {
+    top: 98px;
+  }
+}
 
 /** Ember-paper overwrite **/
 
@@ -43,7 +54,7 @@ md-sidenav.md-locked-open.md-closed, {
 
   // In the side bar, change the graphic code for toolbar
   md-toolbar {
-    background-color: #d1c4e9;
+    background-color: $light-purple;
     color: $color-dark;
   }
 
@@ -57,13 +68,13 @@ md-sidenav.md-locked-open.md-closed, {
 md-toolbar.md-default-theme:not(.md-menu-toolbar),
 md-toolbar:not(.md-menu-toolbar) {
   &.content-box {
-    background-color: #d1c4e9;
+    background-color: $light-purple;
     color: $color-dark;
   }
 }
 
 md-card {
-  min-width: 300px;
+  min-width: 400px;
 }
 
 md-select {

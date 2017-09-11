@@ -1,10 +1,15 @@
 {{#paper-card as |card|}}
   {{detail-header text=model.title}}
+  {{#if model.isSeen}}
+    {{#paper-button raised=true fab=true class="markSeenBtn" onClick=(action "markSeen")}}Seen!{{/paper-button}}
+  {{else}}
+    {{#paper-button raised=true class="markSeenBtn unseen" onClick=(action "markSeen")}}Mark as seen{{/paper-button}}
+  {{/if}}
   {{#card.title as |title|}}
     {{#title.text as |text|}}
       {{#text.subhead}}
         <p>{{model.description}}</p>
-        <hr/>
+        {{paper-divider inset=true}}
         <p>Director: {{model.director}}</p>
         <p>Producer: {{model.producer}}</p>
         <p>Release date: {{model.release_date}}</p>
@@ -12,6 +17,7 @@
       {{/text.subhead}}
     {{/title.text}}
   {{/card.title}}
+  {{paper-divider inset=true}}
 
   {{#if model.people}}
     {{link-to/characters-bloc model=model.people title="Characters"}}
@@ -27,4 +33,4 @@
 
 {{/paper-card}}
 
-{{#link-to "films" tagName="button" class="back md-button"}}Back to films{{/link-to}}
+{{#link-to "films" tagName="button" class="back md-button md-raised"}}Back to films{{/link-to}}

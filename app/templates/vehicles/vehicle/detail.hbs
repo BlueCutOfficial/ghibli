@@ -4,18 +4,21 @@
     {{#title.text as |text|}}
       {{#text.subhead}}
         <p>{{model.description}}</p>
-        <hr/>
+        {{paper-divider inset=true}}
         <p>Vehicle class: {{model.vehicle_class}}</p>
         <p>Length: {{model.length}}</p>
       {{/text.subhead}}
     {{/title.text}}
   {{/card.title}}
+  {{paper-divider inset=true}}
+
   {{#card.actions}}
     <p>Appears in: </p>
     {{#link-to "film.detail" model.films.id tagName="button" class="md-button md-primary"}}
       {{model.films.title}}
     {{/link-to}}
   {{/card.actions}}
+
   {{#card.actions}}
     <p>Pilot: </p>
     {{#link-to "characters.character.detail" model.pilot.id tagName="button" class="md-button md-primary"}}
