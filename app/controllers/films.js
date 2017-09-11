@@ -7,29 +7,33 @@ const {
 
 export default Controller.extend({
 
-  // Available options for queryParams : key=sort, value=parameter for sortProperty
-  sortOptions: {
-    'titleAsc': ['title:asc'],
-    'releaseDateDesc': ['release_date:desc'],
-    'releaseDateAsc': ['release_date:asc']
-  },
-  // Match between select values and available sort values
-  match: {
-    'Alphabetic': 'titleAsc',
-    'Recent first': 'releaseDateDesc',
-    'Old first': 'releaseDateAsc'
-  },
-
   queryParams: ['sort'],
-  sort: 'releaseDateDesc',
+  sort: 'release_date:desc',
 
-  // Select item
-  selectableOptions: ['Recent first', 'Old first', 'Alphabetic'],
-  selectedOption: '',
+  // Select item definition
+  selectableOptions: [
+    {
+      name: 'Alphabetic',
+      code: 'title:asc'
+    },
+    {
+      name: 'Recent first',
+      code: 'release_date:desc'
+    },
+    {
+      name: 'Old first',
+      code: 'release_date:asc'
+    }
+  ],
+
+  // Current option in the select item
+  selectedOption: computed('sort', 'selectableOptions', function() {
+    return this.get('selectableOptions').findBy('code', this.get('sort'));
+  }),
 
   // The array used as parameter for sortedFilms
-  sortProperty: computed('sort', 'sortOptions', function() {
-    return this.get('sortOptions')[this.get('sort')];
+  sortProperty: computed('sort', function() {
+    return [this.get('sort')];
   }),
 
   // Sorted model
@@ -37,8 +41,7 @@ export default Controller.extend({
 
   actions: {
     setSorting(option) {
-      this.set('selectedOption', option);
-      this.set('sort', this.get('match')[option]);
+      this.set('sort', option.code);
     }
   }
 

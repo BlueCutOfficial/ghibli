@@ -1,6 +1,6 @@
 <div>
   {{#paper-select disabled=disableSelect label="Sort by" options=selectableOptions selected=selectedOption onchange=(action "setSorting") as |option|}}
-    {{option}}
+    {{option.name}}
   {{/paper-select}}
 </div>
 <div class="align-center">
