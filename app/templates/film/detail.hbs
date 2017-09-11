@@ -1,6 +1,6 @@
 {{#paper-card as |card|}}
   {{detail-header text=model.title}}
-  {{#if model.isSeen}}
+  {{#if isSeen}}
     {{#paper-button raised=true fab=true class="markSeenBtn" onClick=(action "markSeen")}}Seen!{{/paper-button}}
   {{else}}
     {{#paper-button raised=true class="markSeenBtn unseen" onClick=(action "markSeen")}}Mark as seen{{/paper-button}}

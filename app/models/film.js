@@ -16,8 +16,6 @@ export default Model.extend({
   rt_score: attr('string'), // eslint-disable-line
   people: hasMany('person'),
   locations: hasMany('location'),
-  vehicles: hasMany('vehicle'),
-
-  isSeen: false
+  vehicles: hasMany('vehicle')
 
 });
