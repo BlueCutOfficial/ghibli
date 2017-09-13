@@ -3,9 +3,13 @@ import moduleForAcceptance from 'ghibli/tests/helpers/module-for-acceptance';
 import Pretender from 'pretender';
 import httpStubs from '../helpers/http-stubs';
 
-moduleForAcceptance('Acceptance | films');
+let server;
 
-let server; // eslint-disable-line
+moduleForAcceptance(('Acceptance | films'), {
+  afterEach() {
+    server.shutdown();
+  }
+});
 
 let film1 = {
   'id': '2baf70d1-42bb-4437-b551-e5fed5a87abe',
@@ -27,17 +31,27 @@ let film2 = {
   'rt_score': '97'
 };
 
-test('visiting /films', function(assert) {
+test('load films', function(assert) {
 
-  // eslint-disable-next-line
-  server = new Pretender(function() { // eslint-disable-line
+  server = new Pretender(function() {
     httpStubs.stubFilms(this, [film1, film2]);
   });
-
   visit('/films');
 
   andThen(function() {
     assert.equal(currentURL(), '/films', 'URL ok');
     assert.equal(find('.film-button').length, 2, 'All films are rendered');
+  });
+});
+
+test('click film', function(assert) {
+
+  server = new Pretender(function() {
+    httpStubs.stubFilms(this, [film1]);
+  });
+  visit('/films').click('.film-button');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/films/2baf70d1-42bb-4437-b551-e5fed5a87abe/detail', 'Detail URL ok after clicking a film');
   });
 });

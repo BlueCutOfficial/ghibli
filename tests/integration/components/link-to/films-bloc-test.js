@@ -7,7 +7,22 @@ moduleForComponent('link-to/films-bloc', 'Integration | Component | link to/film
 
 test('it renders', function(assert) {
 
-  this.render(hbs`{{link-to/films-bloc}}`);
+  // eslint-disable-next-line
+  let filmsModel = [
+    {
+      'id': '2baf70d1-42bb-4437-b551-e5fed5a87abe',
+      'title': 'Castle in the Sky',
+      'description': 'The orphan Sheeta inherited a mysterious crystal ...',
+      'director': 'Hayao Miyazaki',
+      'producer': 'Isao Takahata',
+      'release_date': '1986',
+      'rt_score': '95'
+    }
+  ];
 
-  assert.equal(this.$().text().trim(), '');
+  this.render(hbs`{{link-to/films-bloc title='Appears in' model=filmsModel}}`);
+
+  assert.equal(this.$().text().trim(), 'Appears in');
+  assert.ok(this.$('.md-button:contains("Castle in the Sky")'));
+
 });
