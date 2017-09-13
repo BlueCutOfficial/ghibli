@@ -41,6 +41,23 @@ $standard-padding: 20px;
     top: 98px;
   }
 }
+.film-button {
+  display: block;
+  p {
+    display: inline-block;
+    width: 300px;
+  }
+  .markSeenBtn {
+    position: inherit;
+    right: 0;
+    top: 0;
+    display: inline-block;
+    &.unseen {
+      visibility: hidden;
+    }
+  }
+}
+
 
 /** Ember-paper overwrite **/
 

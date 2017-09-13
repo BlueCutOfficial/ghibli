@@ -3,10 +3,20 @@
     {{option.name}}
   {{/paper-select}}
 </div>
+{{#if unseenFilm}}
+  {{#link-to "film.detail" unseenFilm.id class="md-button md-raised"}}
+    <p>Pick up a movie to watch</p>
+  {{/link-to}}
+{{/if}}
 <div class="align-center">
   {{#each sortedFilms as |film|}}
-    {{#link-to "film.detail" film.id class="sidenav-button md-button"}}
+    {{#link-to "film.detail" film.id class="film-button md-button"}}
       <p>{{film.title}}</p>
+      {{#if film.isSeen}}
+        {{#paper-button raised=true fab=true class="markSeenBtn"}}Seen!{{/paper-button}}
+      {{else}}
+        {{#paper-button raised=true fab=true class="markSeenBtn unseen"}}Seen!{{/paper-button}}
+      {{/if}}
     {{/link-to}}
   {{/each}}
 </div>

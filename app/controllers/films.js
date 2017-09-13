@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { storageFor } from 'ember-local-storage';
 
 const {
   Controller,
@@ -7,10 +8,20 @@ const {
 
 export default Controller.extend({
 
+  // The storage for film-states is the array of all seen films ids
+  filmStates: storageFor('film-states'),
+  // modelWithSeen is the model array, with a boolean "isSeen" added
+  modelWithSeen: computed('model', 'filmStates.[]', function() {
+    let selfFilmStates = this.get('filmStates');
+    return this.get('model').map((filmItem) => {
+      filmItem.set('isSeen', selfFilmStates.includes(filmItem.id));
+      return filmItem;
+    });
+  }),
+
+  // Sort properties
   queryParams: ['sort'],
   sort: 'release_date:desc',
-
-  // Select item definition
   selectableOptions: [
     {
       name: 'Alphabetic',
@@ -37,7 +48,19 @@ export default Controller.extend({
   }),
 
   // Sorted model
-  sortedFilms: computed.sort('model', 'sortProperty'),
+  sortedFilms: computed.sort('modelWithSeen', 'sortProperty'),
+
+  unseenFilms: computed.filterBy('modelWithSeen', 'isSeen', false),
+
+  // Random unseen film
+  unseenFilm: computed('unseenFilms.[]', function() {
+    let numberUnseen = this.get('unseenFilms.length');
+    if (this.get('unseenFilms') === undefined || numberUnseen === 0) {
+      return undefined;
+    }
+    let randomIndex = Math.floor(Math.random() * numberUnseen);
+    return this.get('unseenFilms')[randomIndex];
+  }).volatile(),
 
   actions: {
     setSorting(option) {
