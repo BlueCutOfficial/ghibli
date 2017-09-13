@@ -12,7 +12,7 @@ moduleForAcceptance(('Acceptance | films'), {
 });
 
 let film1 = {
-  'id': '2baf70d1-42bb-4437-b551-e5fed5a87abe',
+  'id': '1',
   'title': 'Castle in the Sky',
   'description': 'The orphan Sheeta inherited a mysterious crystal ...',
   'director': 'Hayao Miyazaki',
@@ -22,7 +22,7 @@ let film1 = {
 };
 
 let film2 = {
-  'id': '12cfb892-aac0-4c5b-94af-521852e46d6a',
+  'id': '2',
   'title': 'Grave of the Fireflies',
   'description': 'In the latter part of World War II, a boy and his sister...',
   'director': 'Isao Takahata',
@@ -52,6 +52,6 @@ test('click film', function(assert) {
   visit('/films').click('.film-button');
 
   andThen(function() {
-    assert.equal(currentURL(), '/films/2baf70d1-42bb-4437-b551-e5fed5a87abe/detail', 'Detail URL ok after clicking a film');
+    assert.equal(currentURL(), '/films/1/detail', 'Detail URL ok after clicking a film');
   });
 });

@@ -5,24 +5,39 @@ moduleForComponent('link-to/films-bloc', 'Integration | Component | link to/film
   integration: true
 });
 
-test('it renders', function(assert) {
+test('Renders sigle item', function(assert) {
 
-  // eslint-disable-next-line
-  let filmsModel = [
+  this.set('passedModel', [
     {
-      'id': '2baf70d1-42bb-4437-b551-e5fed5a87abe',
-      'title': 'Castle in the Sky',
-      'description': 'The orphan Sheeta inherited a mysterious crystal ...',
-      'director': 'Hayao Miyazaki',
-      'producer': 'Isao Takahata',
-      'release_date': '1986',
-      'rt_score': '95'
+      'id': '1',
+      'title': 'First item name'
     }
-  ];
+  ]);
 
-  this.render(hbs`{{link-to/films-bloc title='Appears in' model=filmsModel}}`);
+  this.render(hbs`{{link-to/films-bloc title='Title' model=passedModel}}`);
 
-  assert.equal(this.$().text().trim(), 'Appears in');
-  assert.ok(this.$('.md-button:contains("Castle in the Sky")'));
+  assert.ok(this.$().text().indexOf('Title') >= 0, 'title display : ok');
+  assert.ok(this.$('.md-button').text().indexOf('First item name') >= 0, 'button text : ok');
+
+});
+
+test('Renders list', function(assert) {
+
+  this.set('passedModel', [
+    {
+      'id': '1',
+      'title': 'First item name'
+    },
+    {
+      'id': '2',
+      'title': 'Second item name'
+    }
+  ]);
+
+  this.render(hbs`{{link-to/films-bloc title='Title' model=passedModel}}`);
+
+  assert.ok(this.$('.md-button').length === 2, 'number of item : ok');
+  assert.ok(this.$('.md-button').text().indexOf('First item name') >= 0, 'display first button text : ok');
+  assert.ok(this.$('.md-button').text().indexOf('Second item name') >= 0, 'display second button text : ok');
 
 });

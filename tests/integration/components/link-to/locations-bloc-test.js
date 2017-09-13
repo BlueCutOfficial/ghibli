@@ -5,9 +5,39 @@ moduleForComponent('link-to/locations-bloc', 'Integration | Component | link to/
   integration: true
 });
 
-test('it renders', function(assert) {
+test('Renders sigle item', function(assert) {
 
-  this.render(hbs`{{link-to/locations-bloc}}`);
+  this.set('passedModel', [
+    {
+      'id': '1',
+      'title': 'First item name'
+    }
+  ]);
 
-  assert.equal(this.$().text().trim(), '');
+  this.render(hbs`{{link-to/films-bloc title='Title' model=passedModel}}`);
+
+  assert.ok(this.$().text().indexOf('Title') >= 0, 'title display : ok');
+  assert.ok(this.$('.md-button').text().indexOf('First item name') >= 0, 'button text : ok');
+
+});
+
+test('Renders list', function(assert) {
+
+  this.set('passedModel', [
+    {
+      'id': '1',
+      'title': 'First item name'
+    },
+    {
+      'id': '2',
+      'title': 'Second item name'
+    }
+  ]);
+
+  this.render(hbs`{{link-to/films-bloc title='Title' model=passedModel}}`);
+
+  assert.ok(this.$('.md-button').length === 2, 'number of item : ok');
+  assert.ok(this.$('.md-button').text().indexOf('First item name') >= 0, 'display first button text : ok');
+  assert.ok(this.$('.md-button').text().indexOf('Second item name') >= 0, 'display second button text : ok');
+
 });

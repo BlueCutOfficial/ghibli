@@ -5,10 +5,10 @@ moduleForComponent('detail-header', 'Integration | Component | detail header', {
   integration: true
 });
 
-test('it renders', function(assert) {
+test('Renders text', function(assert) {
 
-  this.render(hbs`{{detail-header}}`);
+  this.render(hbs`{{detail-header text='Text to display'}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$().text().trim(), 'Text to display', 'display text : ok');
 
 });
