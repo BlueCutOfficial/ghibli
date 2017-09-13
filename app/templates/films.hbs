@@ -11,7 +11,7 @@
 <div class="align-center">
   {{#each sortedFilms as |film|}}
     {{#link-to "film.detail" film.id class="film-button md-button"}}
-      <p>{{film.title}}</p>
+      <p class="film-button-title">{{film.title}}</p>
       {{#if film.isSeen}}
         {{#paper-button raised=true fab=true class="markSeenBtn"}}Seen!{{/paper-button}}
       {{else}}

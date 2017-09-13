@@ -2,6 +2,7 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'ghibli/tests/helpers/module-for-acceptance';
 import Pretender from 'pretender';
 import httpStubs from '../helpers/http-stubs';
+import data from '../helpers/variables';
 
 let server;
 
@@ -11,47 +12,77 @@ moduleForAcceptance(('Acceptance | films'), {
   }
 });
 
-let film1 = {
-  'id': '1',
-  'title': 'Castle in the Sky',
-  'description': 'The orphan Sheeta inherited a mysterious crystal ...',
-  'director': 'Hayao Miyazaki',
-  'producer': 'Isao Takahata',
-  'release_date': '1986',
-  'rt_score': '95'
-};
-
-let film2 = {
-  'id': '2',
-  'title': 'Grave of the Fireflies',
-  'description': 'In the latter part of World War II, a boy and his sister...',
-  'director': 'Isao Takahata',
-  'producer': 'Toru Hara',
-  'release_date': '1988',
-  'rt_score': '97'
-};
-
-test('load films', function(assert) {
-
+test('Display films list', function(assert) {
   server = new Pretender(function() {
-    httpStubs.stubFilms(this, [film1, film2]);
+    httpStubs.stubFilms(this, [data.film1, data.film2]);
   });
   visit('/films');
-
   andThen(function() {
     assert.equal(currentURL(), '/films', 'URL ok');
     assert.equal(find('.film-button').length, 2, 'All films are rendered');
   });
 });
 
-test('click film', function(assert) {
-
+test('Click film', function(assert) {
   server = new Pretender(function() {
-    httpStubs.stubFilms(this, [film1]);
+    httpStubs.stubFilms(this, [data.film1]);
   });
   visit('/films').click('.film-button');
-
   andThen(function() {
     assert.equal(currentURL(), '/films/1/detail', 'Detail URL ok after clicking a film');
+  });
+});
+
+test('Display Detail', function(assert) {
+  server = new Pretender(function() {
+    httpStubs.stubFilms(this, [data.film1]);
+  });
+  visit('/films/1/detail');
+  andThen(function() {
+    assert.ok(find('h1').text().indexOf('Castle in the Sky') >= 0, 'display title');
+    assert.ok(find('p:nth-child(1)').text().indexOf('Sheeta inherited a mysterious crystal') >= 0, 'display description');
+    assert.equal(find('p:nth-child(3)').text().trim(), 'Director: Hayao Miyazaki', 'display director');
+    assert.equal(find('p:nth-child(4)').text().trim(), 'Producer: Isao Takahata', 'display producer');
+    assert.equal(find('p:nth-child(5)').text().trim(), 'Release date: 1986', 'display release date');
+    assert.equal(find('p:nth-child(6)').text().trim(), 'Rating: 95', 'display rating');
+  });
+});
+
+test('Back to films', function(assert) {
+  server = new Pretender(function() {
+    httpStubs.stubFilms(this, [data.film1]);
+  });
+  visit('/films/1/detail').click('.back');
+  andThen(function() {
+    assert.equal(currentURL(), '/films', 'URL ok');
+  });
+});
+
+test('Sorting query params', function(assert) {
+  server = new Pretender(function() {
+    httpStubs.stubFilms(this, [data.film1, data.film2, data.film3]);
+  });
+  visit('/films');
+  andThen(function() {
+    assert.equal(find('.film-button-title:last').text(), 'Castle in the Sky', 'Default order 1/2');
+    assert.equal(find('.film-button-title:first').text(), 'From Up on Poppy Hill', 'Default order 2/2');
+  });
+
+  visit('/films?sort=title:asc');
+  andThen(function() {
+    assert.equal(find('.film-button-title:first').text(), 'Castle in the Sky', 'Alphabetic order 1/2');
+    assert.equal(find('.film-button-title:last').text(), 'Grave of the Fireflies', 'Alphabetic order 2/2');
+  });
+
+  visit('/films?sort=release_date:asc');
+  andThen(function() {
+    assert.equal(find('.film-button-title:first').text(), 'Castle in the Sky', 'Date asc order 1/2');
+    assert.equal(find('.film-button-title:last').text(), 'From Up on Poppy Hill', 'Date asc order 2/2');
+  });
+
+  visit('/films?sort=release_date:desc');
+  andThen(function() {
+    assert.equal(find('.film-button-title:last').text(), 'Castle in the Sky', 'Date desc order 1/2');
+    assert.equal(find('.film-button-title:first').text(), 'From Up on Poppy Hill', 'Date desc order 2/2');
   });
 });
