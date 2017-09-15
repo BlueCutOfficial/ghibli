@@ -58,6 +58,26 @@ test('Back to films', function(assert) {
   });
 });
 
+test('Complete description', function(assert) {
+  server = new Pretender(function() {
+    httpStubs.stubFilms(this, [data.film1]);
+  });
+  visit('/films');
+  andThen(function() {
+    assert.equal(find('.film-button-desc').text().trim(), '"Sheeta inherited a mysterious crystal"', 'Complete ok');
+  });
+});
+
+test('Shorter description', function(assert) {
+  server = new Pretender(function() {
+    httpStubs.stubFilms(this, [data.film2]);
+  });
+  visit('/films');
+  andThen(function() {
+    assert.equal(find('.film-button-desc').text().trim(), '"In the latter part of World War II, a bo..."', 'Shorter ok');
+  });
+});
+
 test('Sorting query params', function(assert) {
   server = new Pretender(function() {
     httpStubs.stubFilms(this, [data.film1, data.film2, data.film3]);

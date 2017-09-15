@@ -3,7 +3,7 @@ export default {
   film1: {
     'id': '1',
     'title': 'Castle in the Sky',
-    'description': 'The orphan Sheeta inherited a mysterious crystal ...',
+    'description': 'Sheeta inherited a mysterious crystal',
     'director': 'Hayao Miyazaki',
     'producer': 'Isao Takahata',
     'release_date': '1986',
