@@ -11,7 +11,7 @@ export default Controller.extend({
   // The storage for film-states is the array of all seen films ids
   filmStates: storageFor('film-states'),
   // modelWithSeen is the model array, with a boolean "isSeen" added
-  modelWithSeen: computed('model', 'filmStates.[]', function() {
+  modelWithSeen: computed('model.[]', 'filmStates.[]', function() {
     let selfFilmStates = this.get('filmStates');
     return this.get('model').map((filmItem) => {
       filmItem.set('isSeen', selfFilmStates.includes(filmItem.id));

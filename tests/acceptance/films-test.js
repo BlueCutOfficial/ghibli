@@ -12,10 +12,18 @@ moduleForAcceptance(('Acceptance | films'), {
   }
 });
 
-test('Display films list', function(assert) {
-  server = new Pretender(function() {
-    httpStubs.stubFilms(this, [data.film1, data.film2]);
+// Perform fake requests with wanted films data and some other models
+function serverConfig(filmData) {
+  return new Pretender(function() {
+    httpStubs.stubLocations(this, [data.location1]);
+    httpStubs.stubCharacters(this, [data.character1]);
+    httpStubs.stubVehicles(this, [data.vehicle1]);
+    httpStubs.stubFilms(this, filmData);
   });
+}
+
+test('Display films list', function(assert) {
+  server = serverConfig([data.film1, data.film2]);
   visit('/films');
   andThen(function() {
     assert.equal(currentURL(), '/films', 'URL ok');
@@ -24,20 +32,16 @@ test('Display films list', function(assert) {
 });
 
 test('Click film', function(assert) {
-  server = new Pretender(function() {
-    httpStubs.stubFilms(this, [data.film1]);
-  });
+  server = serverConfig([data.film1]);
   visit('/films').click('.film-button');
   andThen(function() {
-    assert.equal(currentURL(), '/films/1/detail', 'Detail URL ok after clicking a film');
+    assert.equal(currentURL(), '/films/11/detail', 'Detail URL ok after clicking a film');
   });
 });
 
 test('Display Detail', function(assert) {
-  server = new Pretender(function() {
-    httpStubs.stubFilms(this, [data.film1]);
-  });
-  visit('/films/1/detail');
+  server = serverConfig([data.film1]);
+  visit('/films/11/detail');
   andThen(function() {
     assert.ok(find('h1').text().indexOf('Castle in the Sky') >= 0, 'display title');
     assert.ok(find('p:nth-child(1)').text().indexOf('Sheeta inherited a mysterious crystal') >= 0, 'display description');
@@ -49,19 +53,15 @@ test('Display Detail', function(assert) {
 });
 
 test('Back to films', function(assert) {
-  server = new Pretender(function() {
-    httpStubs.stubFilms(this, [data.film1]);
-  });
-  visit('/films/1/detail').click('.back');
+  serverConfig([data.film1]);
+  visit('/films/11/detail').click('.back');
   andThen(function() {
     assert.equal(currentURL(), '/films', 'URL ok');
   });
 });
 
 test('Complete description', function(assert) {
-  server = new Pretender(function() {
-    httpStubs.stubFilms(this, [data.film1]);
-  });
+  serverConfig([data.film1]);
   visit('/films');
   andThen(function() {
     assert.equal(find('.film-button-desc').text().trim(), '"Sheeta inherited a mysterious crystal"', 'Complete ok');
@@ -69,9 +69,7 @@ test('Complete description', function(assert) {
 });
 
 test('Shorter description', function(assert) {
-  server = new Pretender(function() {
-    httpStubs.stubFilms(this, [data.film2]);
-  });
+  serverConfig([data.film2]);
   visit('/films');
   andThen(function() {
     assert.equal(find('.film-button-desc').text().trim(), '"In the latter part of World War II, a bo..."', 'Shorter ok');
@@ -79,9 +77,7 @@ test('Shorter description', function(assert) {
 });
 
 test('Sorting query params', function(assert) {
-  server = new Pretender(function() {
-    httpStubs.stubFilms(this, [data.film1, data.film2, data.film3]);
-  });
+  serverConfig([data.film1, data.film2, data.film3]);
   visit('/films');
   andThen(function() {
     assert.equal(find('.film-button-title:last').text(), 'Castle in the Sky', 'Default order 1/2');
