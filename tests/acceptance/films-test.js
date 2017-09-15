@@ -12,7 +12,7 @@ moduleForAcceptance(('Acceptance | films'), {
   }
 });
 
-// Perform fake requests with wanted films data and some other models
+// Perform fake requests with wanted films data and  and Promise.all models
 function serverConfig(filmData) {
   return new Pretender(function() {
     httpStubs.stubLocations(this, [data.location1]);

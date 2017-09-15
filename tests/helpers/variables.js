@@ -44,12 +44,33 @@ export default {
     ]
   },
 
+  location2: {
+    'id': '22',
+    'name': 'The Cat Kingdom',
+    'climate': 'Continental',
+    'terrain': 'Plain',
+    'surface_water': '30',
+    'films': []
+  },
+
   character1: {
     'id': '31',
     'name': 'Colonel Muska',
     'gender': 'Male',
     'age': '33',
     'eye_color': 'Grey',
+    'hair_color': 'Brown',
+    'films': [
+      'https://ghibliapi.herokuapp.com/films/11'
+    ]
+  },
+
+  character2: {
+    'id': '32',
+    'name': 'Sheeta',
+    'gender': 'Female',
+    'age': 'young',
+    'eye_color': 'Brown',
     'hair_color': 'Brown',
     'films': [
       'https://ghibliapi.herokuapp.com/films/11'

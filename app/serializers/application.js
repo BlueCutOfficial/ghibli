@@ -15,7 +15,6 @@ export default JSONSerializer.extend({
 
   // normalize implementation turns the url 'http.....id' into 'id'
   normalize(typeClass, hash) {
-
     typeClass.eachRelationship((key, relationshipMeta) => {
 
       if (hash[key] === undefined) {
