@@ -34,6 +34,10 @@ export default Controller.extend({
     {
       name: 'Old first',
       code: 'release_date:asc'
+    },
+    {
+      name: 'Rating',
+      code: 'rt_score:desc'
     }
   ],
 
