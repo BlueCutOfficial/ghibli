@@ -1,38 +1,19 @@
 import Ember from 'ember';
-import ENV from 'ghibli/config/environment';
 
 const {
   Component,
   computed,
-  isEmpty,
   inject
 } = Ember;
 
 export default Component.extend({
 
-  ajax: inject.service(),
-  defaultPosterURL: 'poster.jpg',
-  apiKey: ENV.APP.OASK,
+  // Inject the service posters to find films posters
+  posters: inject.service('posters'),
 
-  image: computed('film.title', 'defaultPosterURL', 'apiKey', function() {
-    let defaultPosterURL = this.get('defaultPosterURL');
-    if (isEmpty(this.get('film.title')) || isEmpty(this.get('apiKey'))) {
-      return defaultPosterURL;
-    }
-    let base = 'https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=';
-    let url = `${base}${this.get('film.title').split(' ').join('+')}+poster`;
-    return this.get('ajax').request(url, {
-      headers: {
-        'Ocp-Apim-Subscription-Key': this.get('apiKey')
-      }
-    }).then((data) => {
-      if (data.value.length > 0) {
-        return data.value[0].thumbnailUrl;
-      }
-      return defaultPosterURL;
-    }, () => {
-      return defaultPosterURL;
-    });
+  // image is a promise, used with await in the template
+  image: computed('film.id', 'film.title', function() {
+    return this.get('posters').getPosterRef(this.get('film.id'), this.get('film.title')).get('image');
   })
 
 });
