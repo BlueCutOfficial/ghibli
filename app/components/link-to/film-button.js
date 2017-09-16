@@ -4,8 +4,8 @@ import ENV from 'ghibli/config/environment';
 const {
   Component,
   computed,
-  inject,
-  isEmpty
+  isEmpty,
+  inject
 } = Ember;
 
 export default Component.extend({
@@ -13,9 +13,10 @@ export default Component.extend({
   ajax: inject.service(),
   defaultPosterURL: 'poster.jpg',
   apiKey: ENV.APP.OASK,
+
   image: computed('film.title', 'defaultPosterURL', 'apiKey', function() {
     let defaultPosterURL = this.get('defaultPosterURL');
-    if (isEmpty(this.get('film.title'))) {
+    if (isEmpty(this.get('film.title')) || isEmpty(this.get('apiKey'))) {
       return defaultPosterURL;
     }
     let base = 'https://api.cognitive.microsoft.com/bing/v5.0/images/search?q=';

@@ -6,7 +6,9 @@ $warn: "light-green";
 
 $light-purple: #d1c4e9;
 $color-dark: #2b2142;
+$small-padding: 5px;
 $standard-padding: 20px;
+$poster-small-width: 60px;
 
 /** App general rules **/
 .align-left {
@@ -46,23 +48,35 @@ $standard-padding: 20px;
 }
 .film-button {
   display: block;
-  .film-button-info {
-    display: inline-block;
-    width: 300px;
 
-    .film-button-desc {
-      font-weight: normal;
-      text-transform: none
+  .film-link {
+    vertical-align: middle;
+
+    .film-button-info {
+      display: inline-block;
+      vertical-align: middle;
+      width: 300px;
+
+      .film-button-desc {
+        font-weight: normal;
+        text-transform: none
+      }
+    }
+
+    .markSeenBtn {
+      position: initial;
+      vertical-align: middle;
+      margin: 0;
+      display: inline-block;
+      &.unseen {
+        visibility: hidden;
+      }
     }
   }
-  .markSeenBtn {
-    right: 40px;
-    top: 5px;
-    display: inline-block;
-    &.unseen {
-      visibility: hidden;
-    }
-  }
+}
+.poster-small {
+  width: $poster-small-width;
+  vertical-align: middle;
 }
 
 /** Ember-paper overwrite **/

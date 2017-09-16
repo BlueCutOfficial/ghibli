@@ -20,7 +20,7 @@ module.exports = function(environment) {
 
     APP: {
       // Subscription key which provides access to Microsoft Cognitive Services API (Ocp-Apim-Subscription-Key)
-      OASK: 'demo'
+      OASK: ''
     }
   };
 

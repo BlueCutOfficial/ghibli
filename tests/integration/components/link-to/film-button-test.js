@@ -5,21 +5,23 @@ moduleForComponent('link-to/film-button', 'Integration | Component | link to/fil
   integration: true
 });
 
-test('it renders', function(assert) {
+test('Renders info', function(assert) {
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.set('passedModel',
+    {
+      'id': '1',
+      'title': 'Title',
+      'shortDescription': 'Desc...',
+      'isSeen': true
+    }
+  );
+  this.render(hbs`{{link-to/film-button film=passedModel}}`);
+  assert.equal(this.$('.film-button-title').text().trim(), 'Title', 'display title');
+  assert.equal(this.$('.film-button-desc').text().trim(), '"Desc..."', 'display description');
+  assert.equal(this.$('.unseen').length, 0, 'display seen');
 
-  this.render(hbs`{{link-to/film-button}}`);
+  this.set('passedModel.isSeen', false);
+  this.render(hbs`{{link-to/film-button film=passedModel}}`);
+  assert.equal(this.$('.unseen').length, 1, 'display seen');
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#link-to/film-button}}
-      template block text
-    {{/link-to/film-button}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
 });
