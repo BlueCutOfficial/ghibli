@@ -12,7 +12,6 @@ const {
 } = DS;
 
 export default Model.extend({
-
   title: attr('string'),
   description: attr('string'),
   director: attr('string'),
@@ -26,17 +25,14 @@ export default Model.extend({
   // A shorter description + '...' (return the full description if length < 40)
   shortDescription: computed('description', function() {
     let desc = this.get('description');
-    if (desc === undefined || desc.length === 0) {
+    if (desc === undefined) {
       return '';
     }
-    let complete = false;
     let nbCharacters = 40;
     if (desc.length <= nbCharacters) {
-      nbCharacters = desc.length;
-      complete = true;
+      return desc;
     }
     let shortDesc = desc.substring(0, nbCharacters);
-    return (complete) ? shortDesc : `${shortDesc}...`;
+    return `${shortDesc}...`;
   })
-
 });

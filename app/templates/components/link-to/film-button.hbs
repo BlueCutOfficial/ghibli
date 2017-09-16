@@ -1,0 +1,16 @@
+{{#link-to "film.detail" film.id class="film-button md-button"}}
+  {{#if (await image)}}
+    <img src={{await image}} width="50px">
+  {{/if}}
+  <div class="film-link">
+    <div class="film-button-info">
+      <p class="film-button-title">{{film.title}}</p>
+      <p class="film-button-desc">"{{film.shortDescription}}"</p>
+    </div>
+    {{#if film.isSeen}}
+      {{#paper-button raised=true fab=true class="markSeenBtn inline"}}Seen!{{/paper-button}}
+    {{else}}
+      {{#paper-button raised=true fab=true class="markSeenBtn inline unseen"}}Seen!{{/paper-button}}
+    {{/if}}
+  </div>
+{{/link-to}}
