@@ -2,7 +2,7 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'ghibli/tests/helpers/module-for-acceptance';
 import Pretender from 'pretender';
 import httpStubs from '../helpers/http-stubs';
-import data from '../helpers/variables';
+import { location1, location2 } from '../helpers/variables';
 
 let server;
 
@@ -20,7 +20,7 @@ function serverConfig(locationData) {
 }
 
 test('Display locations list', function(assert) {
-  server = serverConfig([data.location1, data.location2]);
+  server = serverConfig([location1, location2]);
   visit('/locations');
   andThen(function() {
     assert.equal(currentURL(), '/locations', 'URL ok');
@@ -29,7 +29,7 @@ test('Display locations list', function(assert) {
 });
 
 test('Click locations', function(assert) {
-  server = serverConfig([data.location1]);
+  server = serverConfig([location1]);
   visit('/locations').click('.sidenav-button');
   andThen(function() {
     assert.equal(currentURL(), '/locations/21/detail', 'URL ok');
@@ -37,7 +37,7 @@ test('Click locations', function(assert) {
 });
 
 test('Display Detail', function(assert) {
-  server = serverConfig([data.location1]);
+  server = serverConfig([location1]);
   visit('/locations/21/detail');
   andThen(function() {
     assert.ok(find('h1').text().indexOf('Laputa') >= 0, 'display title');

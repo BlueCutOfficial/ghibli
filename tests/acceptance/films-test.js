@@ -2,7 +2,7 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'ghibli/tests/helpers/module-for-acceptance';
 import Pretender from 'pretender';
 import httpStubs from '../helpers/http-stubs';
-import data from '../helpers/variables';
+import { film1, film2, film3, character1, location1, vehicle1 } from '../helpers/variables';
 
 let server;
 
@@ -15,15 +15,15 @@ moduleForAcceptance(('Acceptance | films'), {
 // Perform fake requests with wanted films data and  and Promise.all models
 function serverConfig(filmData) {
   return new Pretender(function() {
-    httpStubs.stubLocations(this, [data.location1]);
-    httpStubs.stubCharacters(this, [data.character1]);
-    httpStubs.stubVehicles(this, [data.vehicle1]);
+    httpStubs.stubLocations(this, [location1]);
+    httpStubs.stubCharacters(this, [character1]);
+    httpStubs.stubVehicles(this, [vehicle1]);
     httpStubs.stubFilms(this, filmData);
   });
 }
 
 test('Display films list', function(assert) {
-  server = serverConfig([data.film1, data.film2]);
+  server = serverConfig([film1, film2]);
   visit('/films');
   andThen(function() {
     assert.equal(currentURL(), '/films', 'URL ok');
@@ -32,7 +32,7 @@ test('Display films list', function(assert) {
 });
 
 test('Click film', function(assert) {
-  server = serverConfig([data.film1]);
+  server = serverConfig([film1]);
   visit('/films').click('.film-button');
   andThen(function() {
     assert.equal(currentURL(), '/films/11/detail', 'Detail URL ok after clicking a film');
@@ -40,7 +40,7 @@ test('Click film', function(assert) {
 });
 
 test('Display Detail', function(assert) {
-  server = serverConfig([data.film1]);
+  server = serverConfig([film1]);
   visit('/films/11/detail');
   andThen(function() {
     assert.ok(find('h1').text().indexOf('Castle in the Sky') >= 0, 'display title');
@@ -53,7 +53,7 @@ test('Display Detail', function(assert) {
 });
 
 test('Back to films', function(assert) {
-  serverConfig([data.film1]);
+  serverConfig([film1]);
   visit('/films/11/detail').click('.back');
   andThen(function() {
     assert.equal(currentURL(), '/films', 'URL ok');
@@ -61,7 +61,7 @@ test('Back to films', function(assert) {
 });
 
 test('Complete description', function(assert) {
-  serverConfig([data.film1]);
+  serverConfig([film1]);
   visit('/films');
   andThen(function() {
     assert.equal(find('.film-button-desc').text().trim(), '"Sheeta inherited a mysterious crystal"', 'Complete ok');
@@ -69,7 +69,7 @@ test('Complete description', function(assert) {
 });
 
 test('Shorter description', function(assert) {
-  serverConfig([data.film2]);
+  serverConfig([film2]);
   visit('/films');
   andThen(function() {
     assert.equal(find('.film-button-desc').text().trim(), '"In the latter part of World War II, a bo..."', 'Shorter ok');
@@ -77,7 +77,7 @@ test('Shorter description', function(assert) {
 });
 
 test('Sorting query params', function(assert) {
-  serverConfig([data.film1, data.film2, data.film3]);
+  serverConfig([film1, film2, film3]);
   visit('/films');
   andThen(function() {
     assert.equal(find('.film-button-title:last').text(), 'Castle in the Sky', 'Default order 1/2');

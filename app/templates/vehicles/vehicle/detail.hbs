@@ -3,10 +3,10 @@
   {{#card.title as |title|}}
     {{#title.text as |text|}}
       {{#text.subhead}}
-        <p>{{model.description}}</p>
+        <p class="desc-line">{{model.description}}</p>
         {{paper-divider inset=true}}
-        <p>Vehicle class: {{model.vehicle_class}}</p>
-        <p>Length: {{model.length}}</p>
+        <p class="desc-line">Vehicle class: {{model.vehicle_class}}</p>
+        <p class="desc-line">Length: {{model.length}}</p>
       {{/text.subhead}}
     {{/title.text}}
   {{/card.title}}
@@ -26,7 +26,3 @@
     {{/link-to}}
   {{/card.actions}}
 {{/paper-card}}
-
-
-
-
