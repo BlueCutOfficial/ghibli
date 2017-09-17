@@ -45,6 +45,7 @@ You will need the following things properly installed on your computer.
 * `git clone` this repository
 * `cd ghibli`
 * `npm install`
+* `npm install phantomjs-prebuilt`
 
 ### API 
 
