@@ -1,8 +1,5 @@
 # ghibli
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
-
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
@@ -14,32 +11,46 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+### Git / npm
+
+* `git clone https://github.com/BlueCutOfficial/ghibli.git` this repository
 * `cd ghibli`
 * `npm install`
 
+### API 
+
+#### Info
+
+* This project use the [Studio Ghibli API](https://ghibliapi.herokuapp.com/) to display info about Ghibli movies.
+* It uses the [Microsoft's Image Search API](https://dev.cognitive.microsoft.com/docs/services/56b43f0ccf5ff8098cef3808/operations/571fab09dbe2d933e891028f) to display films posters.
+
+#### apiKey
+
+* You need an apiKey to resquest the posters. If you don't set up a key, a default poster will appear instead of the posters.
+* Get an apiKey by subscribing to [Miscrosoft service](https://azure.microsoft.com/fr-fr/try/cognitive-services/) : thumb "Rechercher", then get the api key for "API Recherche Bing".
+
+When you have got a key, put it in `app/config/environment.js`:
+
+```
+APP: {
+  // Subscription key which provides access to Microsoft Cognitive Services API (Ocp-Apim-Subscription-Key)
+  OASK: 'put-your-key-here'
+}
+```
+
 ## Running / Development
+
+### Running app
 
 * `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
 ### Running Tests
 
+* Test your app at [http://localhost:4200/tests](http://localhost:4200/tests).
+or
 * `ember test`
 * `ember test --server`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
 
 ## Further Reading / Useful Links
 
