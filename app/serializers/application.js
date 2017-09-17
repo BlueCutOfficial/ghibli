@@ -28,7 +28,7 @@ export default JSONSerializer.extend({
             return parseURL(url);
           // But if a link is empty (relationship defined but empty), we get an array with empty items, so filter it
           }).filter((id) => {
-            return id.length > 0;
+            return (id.length > 0 && id !== 'TODO');
           });
           // And in the end, if we have an empty hash[key], delete it
           if (hash[key].length === 0) {
