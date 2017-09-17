@@ -122,6 +122,15 @@ md-toolbar:not(.md-menu-toolbar) {
 md-card {
   min-width: 400px;
 }
+md-card-actions.layout-row {
+  justify-content: initial;
+  display: block;
+
+  .md-button {
+    overflow: initial;
+    min-width: initial;
+  }
+}
 
 md-select {
   min-width: 200px;
