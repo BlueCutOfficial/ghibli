@@ -1,0 +1,9 @@
+<span class="md-subhead">
+  {{#if description}}
+    <p class="detail-desc">{{description}}</p>
+    {{paper-divider inset=true}}
+  {{/if}}
+  {{#each lines as |line|}}
+    <p class="desc-line">{{line.key}}: {{line.value}}</p>
+  {{/each}}
+</span>

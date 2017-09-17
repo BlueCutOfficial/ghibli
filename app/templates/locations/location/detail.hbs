@@ -1,20 +1,13 @@
 {{#paper-card as |card|}}
   {{detail-header text=model.name}}
   {{#card.title as |title|}}
-    {{#title.text as |text|}}
-      {{#text.subhead}}
-        <p class="desc-line">Climate: {{model.climate}}</p>
-        <p class="desc-line">Terrain: {{model.terrain}}</p>
-        <p class="desc-line">Surface water: {{model.surface_water}}</p>
-      {{/text.subhead}}
-    {{/title.text}}
+    {{detail-lines lines=lines}}
   {{/card.title}}
   {{paper-divider inset=true}}
 
   {{#if model.films}}
       {{bind/films-bloc model=model.films title="Appears in"}}
   {{/if}}
-
   {{#if model.residents}}
       {{bind/characters-bloc model=model.residents title="Residents"}}
   {{/if}}

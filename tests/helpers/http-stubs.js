@@ -37,8 +37,7 @@ export default {
 
   // Call when the route locations/ is needed, perform a fake request for each associated film
   stubLocations(pretender, source) {
-    let data =  this.deepClone(source);
-    data.forEach((locItem) => {
+    source.forEach((locItem) => {
       locItem.films.forEach((film) => {
         pretender.get(film.url, () => {
           let response = JSON.stringify(film);
@@ -50,7 +49,21 @@ export default {
           ];
         });
       });
+      locItem.residents.forEach((resident) => {
+        pretender.get(resident.url, () => {
+          let residentData = this.deepClone(resident);
+          this.formatCharacter(residentData);
+          let response = JSON.stringify(residentData);
+          debug(`GET ${resident.url}: ${response}`);
+          return [
+            200,
+            { 'Content-Type': 'application/vnd.api+json' },
+            response
+          ];
+        });
+      });
     });
+    let data =  this.deepClone(source);
     data.forEach((location)=> {
       this.formatLocation(location);
     });

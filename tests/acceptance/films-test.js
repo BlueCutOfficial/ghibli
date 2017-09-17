@@ -44,11 +44,11 @@ test('Display Detail', function(assert) {
   visit('/films/11/detail');
   andThen(function() {
     assert.ok(find('h1').text().indexOf('Castle in the Sky') >= 0, 'display title');
-    assert.ok(find('p:nth-child(1)').text().indexOf('Sheeta inherited a mysterious crystal') >= 0, 'display description');
-    assert.equal(find('p:nth-child(3)').text().trim(), 'Director: Hayao Miyazaki', 'display director');
-    assert.equal(find('p:nth-child(4)').text().trim(), 'Producer: Isao Takahata', 'display producer');
-    assert.equal(find('p:nth-child(5)').text().trim(), 'Release date: 1986', 'display release date');
-    assert.equal(find('p:nth-child(6)').text().trim(), 'Rating: 95', 'display rating');
+    assert.ok(find('.detail-desc:first').text().indexOf('Sheeta inherited a mysterious crystal') >= 0, 'display description');
+    assert.equal(find('.desc-line:first').text().trim(), 'Director: Hayao Miyazaki', 'display director');
+    assert.equal(find('.desc-line:nth-child(4)').text().trim(), 'Producer: Isao Takahata', 'display producer');
+    assert.equal(find('.desc-line:nth-child(5)').text().trim(), 'Release date: 1986', 'display release date');
+    assert.equal(find('.desc-line:last').text().trim(), 'Rating: 95', 'display rating');
   });
 });
 

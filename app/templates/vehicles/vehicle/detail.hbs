@@ -1,14 +1,7 @@
 {{#paper-card as |card|}}
   {{detail-header text=model.name}}
   {{#card.title as |title|}}
-    {{#title.text as |text|}}
-      {{#text.subhead}}
-        <p class="desc-line">{{model.description}}</p>
-        {{paper-divider inset=true}}
-        <p class="desc-line">Vehicle class: {{model.vehicle_class}}</p>
-        <p class="desc-line">Length: {{model.length}}</p>
-      {{/text.subhead}}
-    {{/title.text}}
+      {{detail-lines description=model.description lines=lines}}
   {{/card.title}}
   {{paper-divider inset=true}}
 

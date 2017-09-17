@@ -1,25 +1,16 @@
 {{#paper-card as |card|}}
   {{detail-header text=model.name}}
   {{#card.title as |title|}}
-    {{#title.text as |text|}}
-      {{#text.subhead}}
-        <p class="desc-line">Gender: {{model.gender}}</p>
-        <p class="desc-line">Age: {{model.age}}</p>
-        <p class="desc-line">Eye color: {{model.eye_color}}</p>
-        <p class="desc-line">Hair color: {{model.hair_color}}</p>
-      {{/text.subhead}}
-    {{/title.text}}
+    {{detail-lines lines=lines}}
   {{/card.title}}
   {{paper-divider inset=true}}
 
   {{#if model.films}}
       {{bind/films-bloc model=model.films title="Appears in"}}
   {{/if}}
-
   {{#if model.locations}}
       {{bind/locations-bloc model=model.locations title="Lives in"}}
   {{/if}}
-
   {{#if model.vehicles}}
       {{bind/vehicles-bloc model=model.vehicles title="Drives"}}
   {{/if}}

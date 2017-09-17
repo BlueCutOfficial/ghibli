@@ -43,8 +43,8 @@ test('Display Detail', function(assert) {
   visit('/vehicles/41/detail');
   andThen(function() {
     assert.ok(find('h1').text().indexOf('Air Destroyer Goliath') >= 0, 'display title');
-    assert.equal(find('.desc-line:first').text().trim(), 'Military airship utilized to access Laputa', 'display description');
-    assert.equal(find('.desc-line:nth-child(3)').text().trim(), 'Vehicle class: Airship', 'display class');
+    assert.equal(find('.detail-desc:first').text().trim(), 'Military airship utilized to access Laputa', 'display description');
+    assert.equal(find('.desc-line:first').text().trim(), 'Vehicle class: Airship', 'display class');
     assert.equal(find('.desc-line:last').text().trim(), 'Length: 1,000', 'display length');
   });
 });
