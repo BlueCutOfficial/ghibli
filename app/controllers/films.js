@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import { storageFor } from 'ember-local-storage';
 
 const {
   Controller,
@@ -7,17 +6,6 @@ const {
 } = Ember;
 
 export default Controller.extend({
-
-  // The storage for film-states is the array of all seen films ids
-  filmStates: storageFor('film-states'),
-  // modelWithSeen is the model array, with a boolean "isSeen" added
-  modelWithSeen: computed('model.[]', 'filmStates.[]', function() {
-    let selfFilmStates = this.get('filmStates');
-    return this.get('model').map((filmItem) => {
-      filmItem.set('isSeen', selfFilmStates.includes(filmItem.id));
-      return filmItem;
-    });
-  }),
 
   // Sort properties
   queryParams: ['sort'],
@@ -52,9 +40,9 @@ export default Controller.extend({
   }),
 
   // Sorted model
-  sortedFilms: computed.sort('modelWithSeen', 'sortProperty'),
+  sortedFilms: computed.sort('model', 'sortProperty'),
 
-  unseenFilms: computed.filterBy('modelWithSeen', 'isSeen', false),
+  unseenFilms: computed.filterBy('model', 'isSeen', false),
 
   // Random unseen film
   unseenFilm: computed('unseenFilms.[]', function() {

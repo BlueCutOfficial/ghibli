@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import { storageFor } from 'ember-local-storage';
 
 const {
   computed
@@ -34,5 +35,21 @@ export default Model.extend({
     }
     let shortDesc = desc.substring(0, nbCharacters);
     return `${shortDesc}...`;
-  })
+  }),
+
+  // The storage for film-states is the array of all seen films ids
+  filmStates: storageFor('film-states'),
+  // A film is seen when the film storage contains its id
+  isSeen: computed('model.id', 'filmStates.[]', function() {
+    return this.get('filmStates').includes(this.get('id'));
+  }),
+  // Modify the local storage
+  toggleSeen() {
+    if (this.get('isSeen')) {
+      this.get('filmStates').removeObject(this.get('id'));
+    } else {
+      this.get('filmStates').addObject(this.get('id'));
+    }
+  }
+
 });

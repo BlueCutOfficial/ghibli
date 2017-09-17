@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
 const {
-  Route
+  Route,
+  RSVP
 } = Ember;
 
 export default Route.extend({
@@ -15,8 +16,7 @@ export default Route.extend({
    * unless they are loaded through another route.
    */
   beforeModel() {
-    //eslint-disable-next-line
-    return Promise.all([
+    return RSVP.Promise.all([
       this.get('store').findAll('location'),
       this.get('store').findAll('vehicle')
     ]);
