@@ -14,7 +14,7 @@ export default Service.extend({
 
   ajax: inject.service(),
   posters: null,
-  defaultPosterURL: 'poster.jpg',
+  defaultPosterURL: '/poster.jpg',
   apiKey: ENV.APP.OASK,
 
   init() {

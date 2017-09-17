@@ -13,15 +13,15 @@
   {{paper-divider inset=true}}
 
   {{#if model.films}}
-      {{link-to/films-bloc model=model.films title="Appears in"}}
+      {{bind/films-bloc model=model.films title="Appears in"}}
   {{/if}}
 
   {{#if model.locations}}
-      {{link-to/locations-bloc model=model.locations title="Locations"}}
+      {{bind/locations-bloc model=model.locations title="Locations"}}
   {{/if}}
 
   {{#if model.vehicles}}
-      {{link-to/vehicles-bloc model=model.vehicles title="Drives"}}
+      {{bind/vehicles-bloc model=model.vehicles title="Drives"}}
   {{/if}}
 
 {{/paper-card}}

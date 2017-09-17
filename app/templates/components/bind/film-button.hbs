@@ -1,8 +1,6 @@
 {{#link-to "film.detail" film.id class="film-button md-button"}}
   <div class="film-link">
-    {{#if (await image)}}
-      <img src={{await image}} class="inline poster-small">
-    {{/if}}
+    {{bind/poster-item id=film.id title=film.title classImg="poster-small"}}
     <div class="film-button-info">
       <p class="film-button-title">{{film.title}}</p>
       <p class="film-button-desc">"{{film.shortDescription}}"</p>

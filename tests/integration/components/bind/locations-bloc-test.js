@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('link-to/characters-bloc', 'Integration | Component | link to/characters bloc', {
+moduleForComponent('bind/locations-bloc', 'Integration | Component | bind/locations bloc', {
   integration: true
 });
 
@@ -14,7 +14,7 @@ test('Renders sigle item', function(assert) {
     }
   ]);
 
-  this.render(hbs`{{link-to/films-bloc title='Title' model=passedModel}}`);
+  this.render(hbs`{{bind/films-bloc title='Title' model=passedModel}}`);
 
   assert.ok(this.$().text().indexOf('Title') >= 0, 'title display : ok');
   assert.ok(this.$('.md-button').text().indexOf('First item name') >= 0, 'button text : ok');
@@ -34,7 +34,7 @@ test('Renders list', function(assert) {
     }
   ]);
 
-  this.render(hbs`{{link-to/films-bloc title='Title' model=passedModel}}`);
+  this.render(hbs`{{bind/films-bloc title='Title' model=passedModel}}`);
 
   assert.ok(this.$('.md-button').length === 2, 'number of item : ok');
   assert.ok(this.$('.md-button').text().indexOf('First item name') >= 0, 'display first button text : ok');

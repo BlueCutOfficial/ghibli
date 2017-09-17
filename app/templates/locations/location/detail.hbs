@@ -12,11 +12,11 @@
   {{paper-divider inset=true}}
 
   {{#if model.films}}
-      {{link-to/films-bloc model=model.films title="Appears in"}}
+      {{bind/films-bloc model=model.films title="Appears in"}}
   {{/if}}
 
   {{#if model.people}}
-      {{link-to/characters-bloc model=model.people title="Residents"}}
+      {{bind/characters-bloc model=model.people title="Residents"}}
   {{/if}}
 
 {{/paper-card}}

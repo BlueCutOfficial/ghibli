@@ -9,6 +9,7 @@ $color-dark: #2b2142;
 $small-padding: 5px;
 $standard-padding: 20px;
 $poster-small-width: 60px;
+$poster-middle-width: 210px;
 
 /** App general rules **/
 .align-left {
@@ -77,6 +78,11 @@ $poster-small-width: 60px;
 .poster-small {
   width: $poster-small-width;
   vertical-align: middle;
+}
+.poster-middle {
+  width: $poster-middle-width;
+  vertical-align: middle;
+  margin-right: $standard-padding;
 }
 
 /** Ember-paper overwrite **/

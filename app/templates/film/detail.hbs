@@ -6,6 +6,7 @@
     {{#paper-button raised=true class="markSeenBtn unseen" onClick=(action "markSeen")}}Mark as seen{{/paper-button}}
   {{/if}}
   {{#card.title as |title|}}
+    {{bind/poster-item id=model.id title=model.title classImg="poster-middle"}}
     {{#title.text as |text|}}
       {{#text.subhead}}
         <p>{{model.description}}</p>
@@ -20,15 +21,15 @@
   {{paper-divider inset=true}}
 
   {{#if model.people}}
-    {{link-to/characters-bloc model=model.people title="Characters"}}
+    {{bind/characters-bloc model=model.people title="Characters"}}
   {{/if}}
 
   {{#if model.locations}}
-      {{link-to/locations-bloc model=model.locations title="Locations"}}
+      {{bind/locations-bloc model=model.locations title="Locations"}}
   {{/if}}
 
   {{#if model.vehicles}}
-      {{link-to/vehicles-bloc model=model.vehicles title="Vehicles"}}
+      {{bind/vehicles-bloc model=model.vehicles title="Vehicles"}}
   {{/if}}
 
 {{/paper-card}}
