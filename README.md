@@ -13,7 +13,7 @@ You will need the following things properly installed on your computer.
 
 ### Git / npm
 
-* `git clone https://github.com/BlueCutOfficial/ghibli.git` this repository
+* `git clone` this repository
 * `cd ghibli`
 * `npm install`
 
@@ -21,7 +21,7 @@ You will need the following things properly installed on your computer.
 
 #### Info
 
-* This project use the [Studio Ghibli API](https://ghibliapi.herokuapp.com/) to display info about Ghibli movies.
+* This project uses the [Studio Ghibli API](https://ghibliapi.herokuapp.com/) to display info about Ghibli movies.
 * It uses the [Microsoft's Image Search API](https://dev.cognitive.microsoft.com/docs/services/56b43f0ccf5ff8098cef3808/operations/571fab09dbe2d933e891028f) to display films posters.
 
 #### apiKey

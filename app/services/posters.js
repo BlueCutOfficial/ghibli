@@ -1,11 +1,13 @@
 import Ember from 'ember';
 import ENV from 'ghibli/config/environment';
+import { task } from 'ember-concurrency';
 
 const {
   Service,
   Object: EmberObject,
   isEmpty,
-  inject
+  inject,
+  debug
 } = Ember;
 
 export default Service.extend({
@@ -35,8 +37,20 @@ export default Service.extend({
     return poster;
   },
 
-  // Find a poster on api.cognitive.microsoft.com, return the default poster if there is a problem somewhere
   requestPoster(titleFilm) {
+    debug(`TASK : request poster ${titleFilm}`);
+    return this.get('taskPoster').perform(titleFilm);
+  },
+
+  taskPoster: task(function* (titleFilm) {
+    debug(`TASK : start task ${titleFilm}`);
+    let promise = this.performRequest(titleFilm);
+    return yield promise;
+  }).enqueue(),
+
+  // Find a poster on api.cognitive.microsoft.com, return the default poster if there is a problem somewhere
+  performRequest(titleFilm) {
+    debug(`TASK : perform request ${titleFilm}`);
     let defaultPosterURL = this.get('defaultPosterURL');
     if (isEmpty(titleFilm) || isEmpty(this.get('apiKey'))) {
       return defaultPosterURL;
